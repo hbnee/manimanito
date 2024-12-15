@@ -124,6 +124,9 @@ function App() {
           </div>
         </div> : <form className='contents-container' onSubmit={e => {
           e.preventDefault()
+          if (inputDate === '19940101') {
+            return message.info("이 날은 이혜빈님의 생일입니다. 모두 축하해주세요.")
+          }
           if (!inputDate) {
             return message.error("날짜를 입력해주세요.")
           } else if (!/[0-9]/g.test(inputDate)) {
