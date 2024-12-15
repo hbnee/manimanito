@@ -1,15 +1,12 @@
 {
   "files": {
-    "main.css": "/manimanito/static/css/main.af520314.css",
-    "main.js": "/manimanito/static/js/main.02a9795c.js",
-    "static/js/488.f52d9139.chunk.js": "/manimanito/static/js/488.f52d9139.chunk.js",
-    "index.html": "/manimanito/index.html",
-    "main.af520314.css.map": "/manimanito/static/css/main.af520314.css.map",
-    "main.02a9795c.js.map": "/manimanito/static/js/main.02a9795c.js.map",
-    "488.f52d9139.chunk.js.map": "/manimanito/static/js/488.f52d9139.chunk.js.map"
+    "main.css": "/manimanito/static/css/main.07e98a54.css",
+    "main.js": "/manimanito/static/js/main.d4e22861.js",
+    "static/js/685.08f4d00d.chunk.js": "/manimanito/static/js/685.08f4d00d.chunk.js",
+    "index.html": "/manimanito/index.html"
   },
   "entrypoints": [
-    "static/css/main.af520314.css",
-    "static/js/main.02a9795c.js"
+    "static/css/main.07e98a54.css",
+    "static/js/main.d4e22861.js"
   ]
 }
