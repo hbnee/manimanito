@@ -14,7 +14,7 @@ function App() {
   const [inputCode, setInputCode] = useState('')
   const [answers, setAnswers] = useState([])
   const timerRef = useRef()
-
+  
   useEffect(() => {
     let setHeightInit = () => {
       document.documentElement.style.setProperty("--doc-height", "".concat(window.innerHeight, "px"))
@@ -23,14 +23,20 @@ function App() {
     setHeightInit()
   }, [])
 
+  const createAnswers = (num) => {
+    let userTemp = [...Users]
+    let temp = []
+    for (let i = 0; i < userTemp.length; i++) {
+      const result = getRandomTarget(userTemp.filter(_ => _ !== userTemp[i] && !temp.includes(_)), userTemp[i], inputDate, num)
+      temp.push(result)
+    }
+    if(temp.some(_ => !_)) return createAnswers(num + 1)
+    else return temp
+  }
+
   useEffect(() => {
     if (dateCheck) {
-      let userTemp = [...Users]
-      let temp = []
-      for (let i = 0; i < userTemp.length; i++) {
-        const result = getRandomTarget(userTemp.filter(_ => _ !== userTemp[i] && !temp.includes(_)), userTemp[i], inputDate)
-        temp.push(result)
-      }
+      let temp = createAnswers(0)
       setAnswers(temp)
     }
   }, [dateCheck])
