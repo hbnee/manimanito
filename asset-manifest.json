@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/manimanito/static/css/main.0e8041e1.css",
+    "main.css": "/manimanito/static/css/main.270b4471.css",
     "main.js": "/manimanito/static/js/main.68538a1a.js",
     "static/js/685.08f4d00d.chunk.js": "/manimanito/static/js/685.08f4d00d.chunk.js",
     "index.html": "/manimanito/index.html"
   },
   "entrypoints": [
-    "static/css/main.0e8041e1.css",
+    "static/css/main.270b4471.css",
     "static/js/main.68538a1a.js"
   ]
 }
