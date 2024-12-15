@@ -8,13 +8,14 @@ import { SHA256 } from 'crypto-js';
 function App() {
   const [inputName, setInputName] = useState('')
   const [dateCheck, setDateCheck] = useState(false)
+  const [dateCheckConfirm, setDateCheckConfirm] = useState(false)
   const [inputDate, setInputDate] = useState('')
   const [nameIsOk, setNameIsOk] = useState(false)
   const [codeCheck, setCodeCheck] = useState(false)
   const [inputCode, setInputCode] = useState('')
   const [answers, setAnswers] = useState([])
   const timerRef = useRef()
-  
+
   useEffect(() => {
     let setHeightInit = () => {
       document.documentElement.style.setProperty("--doc-height", "".concat(window.innerHeight, "px"))
@@ -30,7 +31,7 @@ function App() {
       const result = getRandomTarget(userTemp.filter(_ => _ !== userTemp[i] && !temp.includes(_)), userTemp[i], inputDate, num)
       temp.push(result)
     }
-    if(temp.some(_ => !_)) return createAnswers(num + 1)
+    if (temp.some(_ => !_)) return createAnswers(num + 1)
     else return temp
   }
 
@@ -44,12 +45,12 @@ function App() {
   return (
     <div className="App">
       {
-        dateCheck ? (
+        dateCheckConfirm ? (
           nameIsOk ? (
             codeCheck ? <ManitoOpen targetName={inputName} answers={answers} /> : <form className='contents-container' onSubmit={e => {
               e.preventDefault()
               const code = SHA256(inputName).toString().toUpperCase().slice(0, 8)
-              if(timerRef.current) {
+              if (timerRef.current) {
                 clearTimeout(timerRef.current)
                 timerRef.current = undefined
               }
@@ -81,7 +82,7 @@ function App() {
                 }} maxLength={8} placeholder='코드 입력' autoFocus />
               </div>
               <div>
-                <button className='name-question-submit-button' type="submit2">
+                <button className='name-question-submit-button' type="submit">
                   복덕방 인증하기
                 </button>
               </div>
@@ -94,7 +95,7 @@ function App() {
             } else if (/[a-zA-Z]/g.test(inputName)) {
               return message.error("한국인이 아닌가요?")
             } else if (!target) {
-              return message.error("당신은 복덩방 멤버가 아닙니다.")
+              return message.error("당신은 복덕방 멤버가 아닙니다.")
             }
             setNameIsOk(true)
           }}>
@@ -105,12 +106,23 @@ function App() {
               }} autoFocus placeholder='이름 입력' />
             </div>
             <div>
-              <button className='name-question-submit-button' type="submit2">
+              <button className='name-question-submit-button' type="submit">
                 나. 강림.
               </button>
             </div>
           </form>
-        ) : <form className='contents-container' onSubmit={e => {
+        ) : (dateCheck ? <div className='contents-container'>
+          <div>
+            {inputDate.slice(0, 4)}년 {inputDate.slice(4, 6)}월 {inputDate.slice(6,)}일이 맞습니까?
+          </div>
+          <div>
+            <button className='name-question-submit-button' type="button" onClick={() => {
+              setDateCheckConfirm(true)
+            }}>
+              진짜 맞음
+            </button>
+          </div>
+        </div> : <form className='contents-container' onSubmit={e => {
           e.preventDefault()
           if (!inputDate) {
             return message.error("날짜를 입력해주세요.")
@@ -123,19 +135,22 @@ function App() {
           }
           setDateCheck(true)
         }}>
-          <div className='question-text'>선물 할 날짜를 입력해주세요.</div>
+          <div className='question-text'>마니또 날짜를 입력해주세요.</div>
           <div>
             <input value={inputDate} onChange={e => {
               setInputDate(e.target.value)
             }} autoFocus placeholder='YYYYMMDD' maxLength={8} />
           </div>
           <div>
-            <button className='name-question-submit-button' type="submit2">
+            <button className='name-question-submit-button' type="submit">
               다음 단계로
             </button>
           </div>
-        </form>
+        </form>)
       }
+      <div className='version-name'>
+        v{process.env.REACT_APP_VERSION}
+      </div>
     </div>
   );
 }

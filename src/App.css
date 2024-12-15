@@ -29,3 +29,10 @@ input::placeholder {
   background-color: transparent;
   border: 1px solid rgba(0,0,0,.3);
 }
+
+.version-name {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+}
