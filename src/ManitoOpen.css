@@ -1,0 +1,19 @@
+.answer-animation-text {
+    animation: answer-text 2s ease-out;
+    font-size: 2rem;
+    transition: all 1s;
+}
+
+@keyframes answer-text {
+    from {
+        font-weight: thin;
+        visibility: hidden;
+        scale: 0;
+    }
+    to {
+        font-weight: bold;
+        visibility: visible;
+        scale: 1;
+        transform: rotate(3600deg);
+    }
+}
